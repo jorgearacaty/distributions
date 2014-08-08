@@ -1,7 +1,8 @@
 ﻿# --------------------------------------------
-# --- Programa Python 2.7.
-# --- Fit dezena 2 da quina para Rayleigh().
-# --- jorgearacaty 1 ago 2014 - 02:14.
+# --- Python 2.7.3.
+# --- p_raylegh.py - fit dezena 2 da quina para Rayleigh().
+# --- criado em - jorgearacaty 1 aug 2014 - 0214.
+# --- jorgearacaty, 8 aug 2014 - 0837.
 # --------------------------------------------
 
 import numpy as np
@@ -90,7 +91,7 @@ def lendo_csv():
 
         # título, labels e grid.
         plt.title('Rayleigh distribution')
-        plt.ylabel('Probability')
+        plt.ylabel('Probabilidade')
         plt.xlabel('Numeros')
         plt.grid(True)
 
