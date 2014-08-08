@@ -24,8 +24,8 @@ plot([1:80],pdfWbl*mQ,'r.');
 % pdfWbl*mQ é a dica para manter o gráfico aceitável.
 title('Distribuições para a segunda dezena da quina') 
 legend('histograma','Rayleigh','Weibull','Location','NorthEast');
-xlabel('porra');
-ylabel('cacilda');
+xlabel('x');
+ylabel('y');
 
 % ---------------------------------------------
 % prova do CLT para a primeira dezena da quina.
