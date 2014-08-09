@@ -10,6 +10,8 @@ m_CLTproof.m - demonstração prática do CLT.
 
 m_distributions.m - plota Rayleigh e demonstra CLT.
 
+m_confidence_intervals.m - Gráficos para intervalos de confiança.
+
 p_fit_stackoverflow.py - copiado da web.
 http://stackoverflow.com/questions/6620471/fitting-empirical-distribution-to-theoretical-ones-with-scipy-python
 
