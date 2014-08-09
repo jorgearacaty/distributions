@@ -2,7 +2,7 @@
 # --- Python 2.7.3.
 # --- p_raylegh.py - fit dezena 2 da quina para Rayleigh().
 # --- criado em - jorgearacaty 1 aug 2014 - 0214.
-# --- jorgearacaty, 8 aug 2014 - 0837.
+# --- jorgearacaty, 8 aug 2014 - 2108.
 # --------------------------------------------
 
 import numpy as np
@@ -15,14 +15,13 @@ import sys
 import csv
 import random 
 
-""" **********************************************
-*** Fit 2ª dezena da Quina para distribuições. ***
-**************************************************
-"""
+# ------------------------------------------
+# Fit 2ª dezena da Quina para distribuições. 
+# ------------------------------------------
 def lendo_csv():
     
     # ------------------------------------
-    # --- file operations, lê CSV, ordena.
+    # File operations, lê CSV, ordena.
     # ------------------------------------
     file_name = 'csvQuina.csv'
     
@@ -35,15 +34,15 @@ def lendo_csv():
     size = y.size
     print str(size) + " - " + str(total[size-1,:]) + "\n"
 
-    # ---------------------------------
-    # --- múltiple fitted - 2 WARNINGS.
-    # ---------------------------------
+    # -------------------------------------------
+    # Multiple fitted - 2 WARNINGS (bypassed)
+    # -------------------------------------------
     if 1 == 0:
         x = scipy.arange(1,size+1)
         
         banda_de_bins = scipy.arange(0,80,5)
         h = plt.hist(y, bins=range(80),color='white')
-        #----------------------------------------------------normed=1,alpha=.3,
+        #----------------------normed=1,alpha=.3,
         #h = plt.hist(y,bins=banda_de_bins,color='white')        
         dist_names = ['alpha', 'beta', 'arcsine','weibull_min', 'weibull_max', 'rayleigh']
         
@@ -62,7 +61,7 @@ def lendo_csv():
         plt.show()
     
     # -----------------------------------------------
-    # --- operações de fit para rayleigh distribution.
+    # operações de fit para rayleigh distribution.
     # -----------------------------------------------
     if 1 == 1:
         
@@ -81,7 +80,7 @@ def lendo_csv():
         print 'parametros -> ', param[0], " - ", param[1]
         
         x = np.linspace(1,80,80)    # eixo dos 'x' de 1 a 80.
-        #x = scipy.arange(1,81)
+        #x = scipy.arange(1,81) - ou um ou outro.
 
         # gera pdf rayleigh com parametros chutados.
         pdf = scs.rayleigh.pdf(x,loc=par1,scale=par2)
@@ -106,7 +105,6 @@ def lendo_csv():
         # gera pontos randomicos e traça histograma de acordo com random.weibullvariate.
         pontos = []
         for x in xrange(3000):
-            #print x
             pontos.append(random.weibullvariate(30.6001,2.0633))
 
         # histograma com largura de bins customizados.    
@@ -119,6 +117,7 @@ def lendo_csv():
         # seta nome da janela.
         fig = plt.gcf()
         fig.canvas.set_window_title('Histograma random.weibullvariate')
+        
         # nova janela.
         plt.figure
         plt.hist(pontos,normed=1,alpha=.3, \
@@ -131,9 +130,16 @@ def lendo_csv():
 **************************************************
 """
 if __name__ == '__main__':
+    # -----------------------------------------
+    # Splash
+    # -----------------------------------------
     print 'Python running... '
     print sys.argv[0]
+    print 'numpy version: ' + np.__version__
+    print 'scipy version: ' + scipy.__version__
     print "..."
+    
     lendo_csv()
+    
     print "\nDONE"
     # The_End = raw_input("press any key to go out, thks.\n")
