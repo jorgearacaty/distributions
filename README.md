@@ -20,3 +20,5 @@ p_rayleigh.py - constroi gráficos da distribuição Rayleigh.
 allfitdist - Fit all valid parametric probability distributions to data.
 
 m_usando_allfitdist - demonstra uso de allfitdist.
+
+plotar.m - função matlab plota gráfico de distribuição normal.

@@ -1,9 +1,9 @@
 % ---------------------------------------
 % --- Matlab 7.9.0.529 (R2009b).
-% --- m_confidence_intervals.m - plota gráficos para
-% --- intervalor de confiança.
+% --- m_confidence_intervals.m - Estudo de intervalos de confiança,
+% --- gráficos com área sombreada e outros plots interessantes.
 % --- criado em - jorgearacaty, 9 ago 2014 - 1200.
-% --- jorgearacaty, 9 ago 2014 - 1200.
+% --- jorgearacaty, 9 ago 2014 - 1900.
 % ---------------------------------------
 
 % -------------------------------
@@ -37,44 +37,22 @@ if 1 == 1;
     % eixo vertical.
     y = normpdf(x, mu, sigma);
 
-    figure;
-    plot(x,y)
-
-    % shaded area inferior.
-    xlo = [x(x<=limite_inferior) limite_inferior];
-    ylo = [y(x<=limite_inferior) 0];
-    patch(xlo, ylo, 'b')
-
-    % shaded area superior.
-    xhi = [limite_superior x(x>=limite_superior)];
-    yhi = [0 y(x>=limite_superior)];
-    patch(xhi, yhi, 'b')
-
+    plotar(mu,sigma,alpha,x,y,limite_superior,limite_inferior)
+    
     % ---------
     % z scores.
     % ---------
-
+        
     % eixos horizontal e vertical.
     x_z = (x-mu)/sigma;
     y_z = normpdf(x_z);
 
     % valores criticos
-    limite_inferior_z = norminv(alpha/2)
-    limite_superior_z = norminv(1-(alpha/2))
-
-    figure
-    plot(x_z,y_z)
-
-    % shaded area inferior.
-    xlo_z = [x_z(x_z<=limite_inferior_z) limite_inferior_z];
-    ylo_z = [y_z(x_z<=limite_inferior_z) 0];
-    patch(xlo_z, ylo_z, 'g')
-
-    % shaded area superior.
-    xhi_z = [limite_superior_z x_z(x_z>=limite_superior_z)];
-    yhi_z = [0 y_z(x_z>=limite_superior_z)];
-    patch(xhi_z, yhi_z, 'g')
-
+    limite_inferior_z = norminv(alpha/2);
+    limite_superior_z = norminv(1-(alpha/2));
+    
+    plotar(0,1,alpha,x_z,y_z,limite_superior_z,limite_inferior_z)
+    
 end
 
 % -------------------------------------------------------------------------
@@ -89,7 +67,7 @@ if 1 == 1;
     y = 2*exp(-0.2*x) + 0.5*randn(size(x));
 
     % Fit the data using a single-term exponential.
-    fitresult = fit(x,y,'exp1')
+    fitresult = fit(x,y,'exp1');
 
     % Compute prediction intervals
     p11 = predint(fitresult,x,0.95,'observation','off');
@@ -117,7 +95,4 @@ if 1 == 1;
     title('Simultaneous functional bounds','Color','b')
     
 end
-
-
-
 
