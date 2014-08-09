@@ -15,5 +15,6 @@ http://stackoverflow.com/questions/6620471/fitting-empirical-distribution-to-the
 
 p_rayleigh.py - constroi gráficos da distribuição Rayleigh.
 
-NEXT.
-Trazer o programa avaliador de distribuições do ambiente megasena.
+allfitdist - Fit all valid parametric probability distributions to data.
+
+m_usando_allfitdist - demonstra uso de allfitdist.
