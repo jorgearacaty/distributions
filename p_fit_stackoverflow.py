@@ -1,7 +1,11 @@
+# 4 warnings.
+# exemplo do site...
+# http://stackoverflow.com/questions/6620471/fitting-empirical-distribution-to-theoretical-ones-with-scipy-python
 
 import matplotlib.pyplot as plt
 import scipy
 import scipy.stats
+
 size = 30000
 x = scipy.arange(size)
 y = scipy.int_(scipy.round_(scipy.stats.vonmises.rvs(5,size=size)*47))
