@@ -1,4 +1,4 @@
-
+% exercício 8.14 Levine 
 clc
 s = [1, 2, 3, 4, 5, 6, 20]
 mu_amostra = mean(s)

@@ -27,10 +27,11 @@ import math
 def confidence_interval():
 
     # --------------------------------------
-    # sigma unknown - Amderson 2008 pag 310.
+    # sigma unknown - Anderson 2008 pag 310.
     # 95% confidence interval - t Student.
     # http://adventuresinpython.blogspot.com.br/2012/12/confidence-intervals-in-python.html
 
+    # Levine pag 292, exercício 8.14 
     s = np.array([1, 2, 3, 4, 5, 6, 20])
     
     n, min_max, mean, var, skew, kurt = stats.describe(s)
