@@ -26,8 +26,8 @@ if 1 == 1;
     sigma = 2;      
     
     % valores criticos.
-    limite_inferior = norminv(alpha, mu, sigma);
-    limite_superior = norminv(1-alpha, mu, sigma);
+    limite_inferior = norminv(alpha/2, mu, sigma);
+    limite_superior = norminv(1-alpha/2, mu, sigma);
 
     % eixo horizontal.
     x = [linspace(mu-4*sigma,limite_inferior), ...
