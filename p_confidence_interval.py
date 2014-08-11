@@ -44,7 +44,7 @@ def confidence_interval():
     # n_amostra = 7
 
 
-    tinf = t.ppf(alpha/2,n_amostra-1)
+    tinf = scs.t.ppf(alpha/2,n_amostra-1)
     tsup = t.ppf(1-(alpha/2),n_amostra-1)
     
 
@@ -68,7 +68,6 @@ def confidence_interval():
         # confidence interval, media, desvio padrao.
         alpha, mu, sigma = 0.05, 60, s_pop/math.sqrt(n) 
         print s_pop/math.sqrt(n) 
-
 
         # valores criticos.
         limite_inferior = norm.ppf(alpha/2, mu, sigma);
@@ -95,19 +94,19 @@ def confidence_interval():
                limite_superior,sigma,mu,xa,ya,xc,yc,alpha)
 
     if 1 == 1:
-        sigma = 1
+        
+        #sigma = 1
 
         li_st = norm.ppf(alpha/2);
         ls_st = norm.ppf(1-(alpha/2));
-        #print li_st, ls_st
 
-        s_pop = 20
-        n = 100
-        print (60 + (li_st * s_pop/math.sqrt(n)))
+        #s_pop = 20
+        #n = 100
+        #print (60 + (li_st * s_pop/math.sqrt(n)))
 
-        xa = np.linspace(-4*sigma,li_st)
+        xa = np.linspace(-4,li_st)
         xb = np.linspace(li_st,ls_st)
-        xc = np.linspace(ls_st,4*sigma)
+        xc = np.linspace(ls_st,4)
 
         x = np.concatenate((xa,xb,xc), axis=0)
 
@@ -117,7 +116,7 @@ def confidence_interval():
         
         y = np.concatenate((ya,yb,yc), axis=0)
         
-        plotar('Confidence Interval','Distribuicao','x bar', \
+        plotar('Confidence Interval','Z Scores','x bar', \
                'probabilidade','pdf',x,y,li_st, \
                ls_st,1,0,xa,ya,xc,yc,alpha)
         
@@ -145,12 +144,13 @@ def plotar(tit_janela,tit_graf,x_lbl,y_lbl,leg_1,x,y, \
         v_len = y.max()-y.min()
         h_len = x.max()-x.min()
         
-        # posição de labels e labels valor critico.
-        dpl = 1.000/(sigma*10)
+        # labels valor critico e suas posições.
         scrto = '$valor$' + ' ' + '$critico$'
-        plt.text(x.min()+(h_len/19), dpl, '$valor$' + ' ' + '$critico$', fontdict=font)
-        plt.text(lsup, dpl,scrto , fontdict=font)
+        #plt.text(x.min()+(h_len/19), ya.max(), '$valor$' + ' ' + '$critico$', fontdict=font)
+        plt.text(linf-(h_len/5.15), ya.max(), '$valor$' + ' ' + '$critico$', fontdict=font)
+        plt.text(lsup, ya.max(),scrto , fontdict=font)
 
+        # box com informações principais.
         str_text = 'val crit inf = ' + str(linf) + '\n' + \
                    'val crit sup = ' + str(lsup) + '\n' + \
                    'media = ' + str(mu) + '\n' + \
@@ -160,21 +160,21 @@ def plotar(tit_janela,tit_graf,x_lbl,y_lbl,leg_1,x,y, \
              horizontalalignment='left',
              verticalalignment='top')
 
+        # desenha curva em forma de sino.
         plt.plot(x,y,'r-', label = leg_1)
-        
+
+        # áreas anchuradas de alpha/2.
         plt.fill_between(xa,ya,0,color='cyan')
         plt.fill_between(xc,yc,0,color='cyan')
 
-        # plota linhas dos limite criticos
+        # plota linhas verticais dos limite criticos
         plt.plot((linf, linf), (0, ya.max()), 'y-')
         plt.plot((lsup, lsup), (0, ya.max()), 'y-')
-        # não usar -> plt.axvline(x=linf, ymin=0, ymax = .1, linewidth=1, color='k')
+        plt.plot((lsup), (ya.max()), 'k*')
+        plt.plot((linf), (ya.max()), 'k*')
         
         plt.legend(loc='upper right')        
-#---------------------------------------------------
         plt.show()
-#---------------------------------------------------        
-
 
 # **************************************************
 # ***                   MAIN.                    ***
