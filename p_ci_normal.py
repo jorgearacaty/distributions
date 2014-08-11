@@ -1,6 +1,6 @@
 ﻿# --------------------------------------------
 # --- Python 2.7.3.
-# --- confidence_interval.py - fit dezena 2 da quina para Rayleigh().
+# --- p_ci_normal.py - fit dezena 2 da quina para Rayleigh().
 # --- criado em - jorgearacaty 10 aug 2014 - 0214.
 # --- jorgearacaty, 10 aug 2014 - 2021.
 # --------------------------------------------
@@ -8,10 +8,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy
-import scipy.stats as scs
 from scipy.stats import norm
-#import matplotlib.mlab as mlab
-#from scipy import stats
 from scipy.stats import t
 from scipy import stats 
 
@@ -25,80 +22,6 @@ import math
 # intervalos de confiança - confidence intervals.
 # -----------------------------------------------
 def confidence_interval():
-
-    # --------------------------------------
-    # sigma unknown - Anderson 2008 pag 310.
-    # 95% confidence interval - t Student.
-    # http://adventuresinpython.blogspot.com.br/2012/12/confidence-intervals-in-python.html
-
-    # Levine pag 292, exercício 8.14 
-    s = np.array([1, 2, 3, 4, 5, 6, 20])
-    
-    n, min_max, mean, var, skew, kurt = stats.describe(s)
-    
-    s_amostra = math.sqrt(var)
-    n_amostra = n
-    mu_amostra = mean
-    alpha = 0.05
-    
-    # n_amostra = 7
-
-
-    tinf = scs.t.ppf(alpha/2,n_amostra-1)
-    tsup = t.ppf(1-(alpha/2),n_amostra-1)
-
-    
-
-    # outro metodo de achar os t scores.
-    #tinf, tsup = t.interval(0.95, n_amostra-1, loc=1, scale=0)
-    #print tinf, tsup, mean, s_amostra, n_amostra
-
-    #print t.pdf(tinf,n_amostra-1)
-
-    xis_inf = mu_amostra + (tinf * (s_amostra / math.sqrt(n_amostra)))
-    xis_sup = mu_amostra + (tsup * (s_amostra / math.sqrt(n_amostra)))
-
-    print xis_inf, xis_sup
-
-    mu = mu_amostra
-    sigma = s_amostra
-    limite_inferior = xis_inf
-    limite_superior = xis_sup
-    xa = np.linspace(mu-(3.99*sigma),limite_inferior)
-    xb = np.linspace(limite_inferior,limite_superior)
-    xc = np.linspace(limite_superior,mu+(3.99*sigma))
-    x = np.concatenate((xa,xb,xc), axis=0)
-
-    vcdfa = t.cdf(xa,n_amostra-1)
-    vppfa = t.ppf(vcdfa,n_amostra-1)
-    print vppfa, vcdfa
-    #ya = mu_amostra + (vppfa* (s_amostra / math.sqrt(n_amostra)))
-    
-    ya = norm.pdf(xa,mu,sigma)
-    yb = norm.pdf(xb,mu,sigma)
-    yc = norm.pdf(xc,mu,sigma)
-    y = np.concatenate((ya,yb,yc), axis=0)    
-    plotar('Confidence Interval','t student scores','x bar', \
-               'probabilidade','pdf',x,y,limite_inferior, \
-               limite_superior,sigma,mu,xa,ya,xc,yc,alpha)
-
-    mu = mu_amostra
-    sigma = s_amostra
-    limite_inferior = tinf
-    limite_superior = tsup
-    xa = np.linspace(-4,limite_inferior)
-    xb = np.linspace(limite_inferior,limite_superior)
-    xc = np.linspace(limite_superior,4)
-    x = np.concatenate((xa,xb,xc), axis=0)
-    ya = t.pdf(xa,n_amostra-1)
-    yb = t.pdf(xb,n_amostra-1)
-    yc = t.pdf(xc,n_amostra-1)
-    y = np.concatenate((ya,yb,yc), axis=0)    
-    plotar('Confidence Interval','t student scores','x bar', \
-               'probabilidade','pdf',x,y,limite_inferior, \
-               limite_superior,sigma,mu,xa,ya,xc,yc,alpha)
-        
-    # ---------------------------------------
    
     if 1 == 1:
         
@@ -251,4 +174,5 @@ if __name__ == '__main__':
     confidence_interval()
     
     print "\nDONE"
+    The_End = raw_input("press any key to go out, thks.\n")
 
