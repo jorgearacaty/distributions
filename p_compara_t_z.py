@@ -69,8 +69,8 @@ def confidence_interval():
     xc = np.linspace(limite_superior,mu+(3.99*sigma))
     x = np.concatenate((xa,xb,xc), axis=0)
 
-    vcdfa = t.cdf(xa,n_amostra-1)
-    vppfa = t.ppf(vcdfa,n_amostra-1)
+    #vcdfa = t.cdf(xa,n_amostra-1)
+    #vppfa = t.ppf(vcdfa,n_amostra-1)
     #print vppfa, vcdfa
     #ya = mu_amostra + (vppfa* (s_amostra / math.sqrt(n_amostra)))
     
@@ -78,9 +78,9 @@ def confidence_interval():
     yb = norm.pdf(xb,mu,sigma)
     yc = norm.pdf(xc,mu,sigma)
     y = np.concatenate((ya,yb,yc), axis=0)    
-#   plotar('Confidence Interval','t student scores','x bar', \
-#           'probabilidade','pdf',x,y,limite_inferior, \
-#           limite_superior,sigma,mu,xa,ya,xc,yc,alpha)
+    plotar('Confidence Interval','t student scores','x bar', \
+           'probabilidade','pdf',x,y,limite_inferior, \
+           limite_superior,sigma,mu,xa,ya,xc,yc,alpha,np.array([]))
 
     mu = mu_amostra
     sigma = s_amostra
@@ -167,12 +167,6 @@ def confidence_interval():
         
 def plotar(tit_janela,tit_graf,x_lbl,y_lbl,leg_1,x,y, \
            linf,lsup,sigma,mu,xa,ya,xc,yc,alpha,z):
-
-        font = {'family' : 'serif',
-        'color'  : 'darkred',
-        'weight' : 'normal',
-        'size'   : 16,
-        }
     
         # seta nome da janela.
         fig = plt.gcf()
@@ -227,7 +221,8 @@ def plotar(tit_janela,tit_graf,x_lbl,y_lbl,leg_1,x,y, \
         
         # desenha curva em forma de sino.
         plt.plot(x,y,'r-', label = 't scores')
-        plt.plot(x,z,'b*', label = 'z scores')
+        if len(z) > 0:
+            plt.plot(x,z,'b*', label = 'z scores')
 
         # áreas anchuradas de alpha/2.
         plt.fill_between(xa,ya,0,color='cyan')
