@@ -46,6 +46,7 @@ def confidence_interval():
 
     tinf = scs.t.ppf(alpha/2,n_amostra-1)
     tsup = t.ppf(1-(alpha/2),n_amostra-1)
+
     
 
     # outro metodo de achar os t scores.
@@ -58,6 +59,44 @@ def confidence_interval():
     xis_sup = mu_amostra + (tsup * (s_amostra / math.sqrt(n_amostra)))
 
     print xis_inf, xis_sup
+
+    mu = mu_amostra
+    sigma = s_amostra
+    limite_inferior = xis_inf
+    limite_superior = xis_sup
+    xa = np.linspace(mu-(3.99*sigma),limite_inferior)
+    xb = np.linspace(limite_inferior,limite_superior)
+    xc = np.linspace(limite_superior,mu+(3.99*sigma))
+    x = np.concatenate((xa,xb,xc), axis=0)
+
+    vcdfa = t.cdf(xa,n_amostra-1)
+    vppfa = t.ppf(vcdfa,n_amostra-1)
+    print vppfa, vcdfa
+    #ya = mu_amostra + (vppfa* (s_amostra / math.sqrt(n_amostra)))
+    
+    ya = norm.pdf(xa,mu,sigma)
+    yb = norm.pdf(xb,mu,sigma)
+    yc = norm.pdf(xc,mu,sigma)
+    y = np.concatenate((ya,yb,yc), axis=0)    
+    plotar('Confidence Interval','t student scores','x bar', \
+               'probabilidade','pdf',x,y,limite_inferior, \
+               limite_superior,sigma,mu,xa,ya,xc,yc,alpha)
+
+    mu = mu_amostra
+    sigma = s_amostra
+    limite_inferior = tinf
+    limite_superior = tsup
+    xa = np.linspace(-4,limite_inferior)
+    xb = np.linspace(limite_inferior,limite_superior)
+    xc = np.linspace(limite_superior,4)
+    x = np.concatenate((xa,xb,xc), axis=0)
+    ya = t.pdf(xa,n_amostra-1)
+    yb = t.pdf(xb,n_amostra-1)
+    yc = t.pdf(xc,n_amostra-1)
+    y = np.concatenate((ya,yb,yc), axis=0)    
+    plotar('Confidence Interval','t student scores','x bar', \
+               'probabilidade','pdf',x,y,limite_inferior, \
+               limite_superior,sigma,mu,xa,ya,xc,yc,alpha)
         
     # ---------------------------------------
    
@@ -89,7 +128,7 @@ def confidence_interval():
         
         y = np.concatenate((ya,yb,yc), axis=0)
   
-        plotar('Confidence Interval','Distribuicao','x bar', \
+        plotar('Confidence Interval','distribuicao','x bar', \
                'probabilidade','pdf',x,y,limite_inferior, \
                limite_superior,sigma,mu,xa,ya,xc,yc,alpha)
 
@@ -116,7 +155,7 @@ def confidence_interval():
         
         y = np.concatenate((ya,yb,yc), axis=0)
         
-        plotar('Confidence Interval','Z Scores','x bar', \
+        plotar('Confidence Interval','z scores','x bar', \
                'probabilidade','pdf',x,y,li_st, \
                ls_st,1,0,xa,ya,xc,yc,alpha)
         
@@ -143,12 +182,32 @@ def plotar(tit_janela,tit_graf,x_lbl,y_lbl,leg_1,x,y, \
 
         v_len = y.max()-y.min()
         h_len = x.max()-x.min()
-        
-        # labels valor critico e suas posições.
-        scrto = '$valor$' + ' ' + '$critico$'
-        #plt.text(x.min()+(h_len/19), ya.max(), '$valor$' + ' ' + '$critico$', fontdict=font)
-        plt.text(linf-(h_len/5.15), ya.max(), '$valor$' + ' ' + '$critico$', fontdict=font)
-        plt.text(lsup, ya.max(),scrto , fontdict=font)
+
+        # "%0.2f" % linf
+        # labels valor critico.
+        plt.text(linf, ya.max(),' v. critico (' + "%0.2f" % linf+')',horizontalalignment='right')
+        plt.text(lsup, ya.max(),' v. critico (' + "%0.2f" % lsup+')', horizontalalignment='left')
+
+        # label alpha/2 inferior.
+        plt.text(xa.min()+((linf-xa.min())/2), ya.max()/2, \
+                 str(alpha/2),horizontalalignment='center')
+        # label alpha/2 superior.
+        plt.text(lsup+((xc.max()-lsup)/2), ya.max()/2, \
+                 str(alpha/2), horizontalalignment='center')
+
+        # linha até a área inferior.
+        plt.plot((xa.min()+((linf-xa.min())/2), (xa.min()+((linf-xa.min())*.85))),  \
+                 (ya.max()/2, ya.max()/4), 'b-')
+        # xiszinho.
+        plt.plot(xa.min()+((linf-xa.min())*.85),  \
+                 (ya.max()/4), 'bx')
+
+        # linha até a área superior.
+        plt.plot((lsup+((xc.max()-lsup)/2), (xc.max()-((linf-xa.min())*.85))),  \
+                 (ya.max()/2, ya.max()/4), 'b-')  
+        # xiszinho.
+        plt.plot((xc.max()-((linf-xa.min())*.85)),  \
+                  ya.max()/4, 'bx')  
 
         # box com informações principais.
         str_text = 'val crit inf = ' + str(linf) + '\n' + \
@@ -159,7 +218,7 @@ def plotar(tit_janela,tit_graf,x_lbl,y_lbl,leg_1,x,y, \
         plt.text(x.min()+(h_len/27), y.max()-(v_len/20),str_text,
              horizontalalignment='left',
              verticalalignment='top')
-
+        
         # desenha curva em forma de sino.
         plt.plot(x,y,'r-', label = leg_1)
 
