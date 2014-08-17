@@ -56,7 +56,7 @@ clt_mean_bar = mean(samples_means);
 % grande (>=30).
 clt_sigma_bar = std(samples_means);
 
-% hist(samples_means)
+hist(samples_means)
 
 fprintf('\n---------------------------------\n')
 
