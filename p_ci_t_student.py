@@ -80,7 +80,7 @@ def confidence_interval():
 
     pf_plota.plotar('Confidence Interval','t student scores','x bar', \
            'probabilidade','pdf',x,y,limite_inferior, \
-           limite_superior,sigma,mu,xa,ya,xc,yc,alpha,np.array([]))
+           limite_superior,sigma,mu,xa,ya,xc,yc,alpha,np.array([]),n_amostra)
     
     # ----------------------------------------------
     # desenha curva baseada na distribuição Student.
@@ -110,7 +110,7 @@ def confidence_interval():
     
     pf_plota.plotar('Confidence Interval','t student scores','x bar', \
                'probabilidade','pdf',x,y,limite_inferior, \
-               limite_superior,sigma,mu,xa,ya,xc,yc,alpha,z)
+               limite_superior,sigma,mu,xa,ya,xc,yc,alpha,z,n_amostra)
 
 # **************************************************
 # ***                   MAIN.                    ***

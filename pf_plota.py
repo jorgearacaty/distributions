@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 # desenha gráficos.
 # -----------------------------------------------        
 def plotar(tit_janela,tit_graf,x_lbl,y_lbl,leg_1,x,y, \
-           linf,lsup,sigma,mu,xa,ya,xc,yc,alpha,z):
+           linf,lsup,sigma,mu,xa,ya,xc,yc,alpha,z,ene):
     
         # seta nome da janela.
         fig = plt.gcf()
@@ -63,7 +63,8 @@ def plotar(tit_janela,tit_graf,x_lbl,y_lbl,leg_1,x,y, \
                    'val crit sup = ' + str(lsup) + '\n' + \
                    'media = ' + str(mu) + '\n' + \
                    'desvio padrao = ' + str(sigma)  + '\n' + \
-                   'alpha = ' + str(alpha)
+                   'alpha = ' + str(alpha) + '\n' + \
+                   'n = ' + str(ene)
         plt.text(x.min()+(h_len/27), y.max()-(v_len/20),str_text,
              horizontalalignment='left',
              verticalalignment='top')

@@ -59,9 +59,9 @@ def confidence_interval():
         y = np.concatenate((ya,yb,yc), axis=0)
 
         if 1 == 1:
-            pf_plota.plotar('Confidence Interval','t student scores','x bar', \
+            pf_plota.plotar('Confidence Interval','normal','x bar', \
                 'probabilidade','pdf',x,y,limite_inferior, \
-                limite_superior,sigma_bar,mu,xa,ya,xc,yc,alpha,np.array([]))
+                limite_superior,sigma_bar,mu,xa,ya,xc,yc,alpha,np.array([]),n)
 
     if 1 == 1:
 
@@ -81,9 +81,9 @@ def confidence_interval():
         y = np.concatenate((ya,yb,yc), axis=0)
 
         if 1 == 1:
-            pf_plota.plotar('Confidence Interval','t student scores','x bar', \
+            pf_plota.plotar('Confidence Interval','z scores','x bar', \
                 'probabilidade','pdf',x,y,li_st, \
-                ls_st,1,0,xa,ya,xc,yc,alpha,np.array([]))
+                ls_st,1,0,xa,ya,xc,yc,alpha,np.array([]),n)
 
 # **************************************************
 # ***                   MAIN.                    ***
