@@ -138,6 +138,7 @@ if __name__ == '__main__':
     print 'scipy version: ' + scipy.__version__
     print "..."
     
+    variavel = "teste de variavel"
     lendo_csv()
     
     print "\nDONE"
