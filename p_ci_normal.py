@@ -3,6 +3,7 @@
 # --- p_ci_normal.py - confidence interval sigma_bar conhecido.
 # --- criado em - jorgearacaty 10 aug 2014 - 0214.
 # --- jorgearacaty, 15 aug 2014 - 1715.
+# --- teste em 25 apr 2015 - 1855
 # --------------------------------------------
 
 import numpy as np
