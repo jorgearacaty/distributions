@@ -15,6 +15,7 @@ import sys
 import csv
 import random 
 
+
 # ------------------------------------------
 # Fit 2ª dezena da Quina para distribuições. 
 # ------------------------------------------
@@ -71,7 +72,7 @@ def lendo_csv():
 
         # seta nome da janela.
         fig = plt.gcf()
-        fig.canvas.set_window_title('Estudo de distribuição Rayleigh')
+        fig.canvas.set_window_title('Estudo de Rayleigh distro')
         
         plt.figure        
         param = scs.rayleigh.fit(y)     # capta parametros da população.
