@@ -3,6 +3,7 @@
 # --- p_raylegh.py - fit dezena 2 da quina para Rayleigh().
 # --- criado em - jorgearacaty 1 aug 2014 - 0214.
 # --- jorgearacaty, 8 aug 2014 - 2108.
+# --- last modified at - 11 de setembro de 2015 19:50:26 BRT
 # --------------------------------------------
 
 import numpy as np
