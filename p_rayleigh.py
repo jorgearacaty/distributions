@@ -1,4 +1,5 @@
-﻿# --------------------------------------------
+﻿# -*- encoding: utf-8 -*-
+# --------------------------------------------
 # --- Python 2.7.3.
 # --- p_raylegh.py - fit dezena 2 da quina para Rayleigh().
 # --- criado em - jorgearacaty 1 aug 2014 - 0214.
@@ -139,6 +140,7 @@ if __name__ == '__main__':
     print 'numpy version: ' + np.__version__
     print 'scipy version: ' + scipy.__version__
     print "..."
+    print 'não'
     
     variavel = "teste de variavel"
     lendo_csv()
